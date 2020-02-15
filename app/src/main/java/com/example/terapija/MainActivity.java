@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Signed in successfully, show authenticated UI.
             Intent  intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -89,7 +90,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account!= null)
+        {
+            Intent  intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        }
 
+    }
 }
 
 /*
