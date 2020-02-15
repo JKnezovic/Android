@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "849449509713",
+    "firebase_url": "https://terapija-8fb0a.firebaseio.com",
+    "project_id": "terapija-8fb0a",
+    "storage_bucket": "terapija-8fb0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849449509713:android:d6ceeb8f5ac880d0b72970",
+        "android_client_info": {
+          "package_name": "com.example.terapija"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849449509713-1mp34419olbi7767sn5enmcbqb6lrocn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.terapija",
+            "certificate_hash": "9dd6cf0fab05da6264b49caa53a2b80ed60f13f0"
+          }
+        },
+        {
+          "client_id": "849449509713-a6eh3smkp1f494d5jgabn1lukm9nsfhd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2Fp0an7TNtk5q_sw8AwmD-FlPPH8jglw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849449509713-a6eh3smkp1f494d5jgabn1lukm9nsfhd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
