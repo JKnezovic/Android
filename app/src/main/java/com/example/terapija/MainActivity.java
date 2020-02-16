@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-            Intent  intent = new Intent(MainActivity.this, ProfileActivity.class);
+            Intent  intent = new Intent(MainActivity.this, ParentActivity.class);
             startActivity(intent);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             member.setSurname(txtSurname.getText().toString().trim());
             member.setAge(Age);
             reff.push().setValue(member);
-            Toast.makeText(MainActivity.this,"data insereted successfully",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"data inserted successfully",Toast.LENGTH_SHORT).show();
 
         }
     });*/
