@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account!= null)
         {
-            Intent  intent = new Intent(MainActivity.this, ProfileActivity.class);
+            Intent  intent = new Intent(MainActivity.this, ParentActivity.class);
             startActivity(intent);
         }
 

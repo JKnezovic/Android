@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_terapija"
+        android:icon="@drawable/ic_colorize_black_24dp"
+        android:title="Terapije" />
+
+    <item
+        android:id="@+id/nav_podsjetnici"
+        android:icon="@drawable/ic_access_time_black_24dp"
+        android:title="Podsjetnici" />
+
+    <item
+        android:id="@+id/nav_lijekovi"
+        android:icon="@drawable/ic_format_list_bulleted_black_24dp"
+        android:title="Lijekovi" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Profil" />
+</menu>
