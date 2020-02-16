@@ -23,9 +23,9 @@ public class FirebaseDatabaseHelper {
         void DataIsDeleted();
     }
 
-    public FirebaseDatabaseHelper() {
+    public FirebaseDatabaseHelper(String item) {
         mDatabase = FirebaseDatabase.getInstance();
-        mReferenceItems = mDatabase.getReference("drugs");
+        mReferenceItems = mDatabase.getReference(item);
     }
     public void readMedicine(final DataStatus dataStatus){
         mReferenceItems.addValueEventListener(new ValueEventListener() {
