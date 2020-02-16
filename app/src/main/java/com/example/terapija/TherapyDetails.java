@@ -21,10 +21,9 @@ public class TherapyDetails extends Activity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Integer value = extras.getInt("POZICIJA");
-            final Therapy therapy = DataStorage.listViewData.get(value);
-            type.setText(therapy.getType());
-            name.setText("NAME: "+therapy.getName());
+            String value = extras.getString("TITLE");
+            type.setText(value);
+            name.setText(extras.getString("CONTENT"));
 
 
         }
