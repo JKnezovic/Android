@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,15 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
+public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> implements Filterable {
 
     private static final String TAG = "MyListAdapter";
 
-    private List<Medicine> mMedicines= new ArrayList<>();
+    private List<Medicine> mMedicines;
+    private List<Medicine> filteredMedicines;
     private Context mContext;
 
     public MyListAdapter(Context context, List<Medicine> medicines) {
         mMedicines = medicines;
+        filteredMedicines=new ArrayList<>(mMedicines);
         mContext = context;
     }
 
@@ -58,6 +62,43 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public int getItemCount() {
         return mMedicines.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Medicine> filteredList = new ArrayList<>();
+            if(constraint == null || constraint.length()==0)
+                filteredList.addAll(filteredMedicines);
+            else
+            {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for(Medicine medicine : filteredMedicines)
+                {
+                    if(medicine.getTitle().toLowerCase().contains(filterPattern))
+                        filteredList.add(medicine);
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mMedicines.clear();
+            mMedicines.addAll((List)results.values);
+            notifyDataSetChanged();
+
+        }
+    };
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
