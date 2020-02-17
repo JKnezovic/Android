@@ -14,17 +14,28 @@ import androidx.fragment.app.Fragment;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 public class TerapijaFragment extends Fragment {
     FirebaseListAdapter<Therapy> adapter;
+    FloatingActionButton addNewBtn;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_terapija,container,false);
         ListView myListView= (ListView) view.findViewById(R.id.therapy_listview);
+
+        addNewBtn=(FloatingActionButton) view.findViewById(R.id.floatingActionButton2);
+        addNewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent  intent = new Intent(getActivity(), TherapyAddNew.class);
+                startActivity(intent);
+            }
+        });
 
             Query query = FirebaseDatabase.getInstance().getReference("therapy");
 
@@ -48,8 +59,13 @@ public class TerapijaFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getActivity(), TherapyDetails.class);
-                        intent.putExtra("TITLE", therapy.getName());
-                        intent.putExtra("CONTENT", therapy.getType());
+                        intent.putExtra("Name", therapy.getName());
+                        intent.putExtra("Type", therapy.getType());
+                        intent.putExtra("Daily", therapy.getDialy());
+                        intent.putExtra("Date", therapy.getDate());
+                        intent.putExtra("Amount", therapy.getAmount());
+                        intent.putExtra("Time", therapy.getTime());
+                        intent.putExtra("Weekly", therapy.getWeekly());
                         startActivity(intent);
 
                     }

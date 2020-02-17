@@ -7,14 +7,14 @@ public class Therapy {
     private String date;
     private int amount;
     private String time;
-    private String weekly;
+    private int weekly;
 
     public Therapy(){
 
     }
 
 
-    public Therapy(String name,String type,int dialy,String date,int amount,String time,String weekly){
+    public Therapy(String name,String type,int dialy,String date,int amount,String time,int weekly){
         this.name=name;
         this.type=type;
         this.dialy=dialy;
@@ -40,11 +40,11 @@ public class Therapy {
         this.type = type;
     }
 
-    public int getDaily() {
+    public int getDialy() {
         return dialy;
     }
 
-    public void setDaily(int daily) {
+    public void setDialy(int daily) {
         this.dialy = daily;
     }
 
@@ -72,11 +72,11 @@ public class Therapy {
         this.time = time;
     }
 
-    public String getWeekly() {
+    public int getWeekly() {
         return weekly;
     }
 
-    public void setWeekly(String weekly) {
+    public void setWeekly(int weekly) {
         this.weekly = weekly;
     }
 

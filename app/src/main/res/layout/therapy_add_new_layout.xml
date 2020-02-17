@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/TherapyAddNewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Therapy Name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/TherapyAddNewType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Type of medicine(pill, ampoules..)"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/TherapyAddNewDaily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Number of times you take medicine per day"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/TherapyAddNewDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Date of start"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/TherapyAddNewAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Number of pills in one take"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/TherapyAddNewTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Hour - first medicine in day(HH:MM)"
+        android:inputType="time" />
+
+    <EditText
+        android:id="@+id/TherapyAddNewWeekly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Number of times you take per week"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/TherapyAddNewButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+</LinearLayout>
