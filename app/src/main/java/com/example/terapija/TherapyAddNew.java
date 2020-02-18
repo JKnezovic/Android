@@ -20,11 +20,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
+
 public class TherapyAddNew extends AppCompatActivity {
 
     EditText name,type,daily,date,amount,time,weekly;
     Button saveBtn;
     Therapy therapy = new Therapy();
+    Reminder reminder= new Reminder();
+    DatabaseReference reffReminder;
     DatabaseReference reff;
 
     @Override
@@ -42,24 +47,36 @@ public class TherapyAddNew extends AppCompatActivity {
         saveBtn=findViewById(R.id.TherapyAddNewButton);
         createNotificationChannel();
         reff= FirebaseDatabase.getInstance().getReference().child("therapy");
+        reffReminder= FirebaseDatabase.getInstance().getReference().child("reminder");
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String dates=date.getText().toString().trim();
+                String times=time.getText().toString().trim();
                 therapy.setName(name.getText().toString().trim());
                 therapy.setType(type.getText().toString().trim());
                 therapy.setDialy(Integer.parseInt(daily.getText().toString().trim()));
-                therapy.setDate(date.getText().toString().trim());
+                therapy.setDate(dates);
                 therapy.setAmount(Integer.parseInt(amount.getText().toString().trim()));
-                therapy.setTime(time.getText().toString().trim());
+                therapy.setTime(times);
                 therapy.setWeekly(Integer.parseInt(weekly.getText().toString().trim()));
-                createReminder();
+                String[] datesSplt=dates.split("/");
+                String[] timesSplit=times.split(":");
 
+                createReminder(datesSplt[0],datesSplt[1],datesSplt[2],timesSplit[1],timesSplit[0]);
+
+                reminder.setName(name.getText().toString().trim());
+                reminder.setTime(times);
+                reminder.setAmount(Integer.parseInt(amount.getText().toString().trim()));
+                reminder.setEnd_date(dates);
+
+                reffReminder.push().setValue(reminder);
                 reff.push().setValue(therapy);
                 Toast.makeText(TherapyAddNew.this,"data inserted successfully",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
-                intent.putExtra(AlarmClock.EXTRA_HOUR,21);
-                intent.putExtra(AlarmClock.EXTRA_MINUTES,20);
+                intent.putExtra(AlarmClock.EXTRA_HOUR,Integer.parseInt(timesSplit[0]));
+                intent.putExtra(AlarmClock.EXTRA_MINUTES,Integer.parseInt(timesSplit[1]));
                 startActivity(intent);
                 finish();
 
@@ -83,16 +100,29 @@ public class TherapyAddNew extends AppCompatActivity {
         }
     }
 
-    private void createReminder(){
+    private void createReminder(String day,String month,String year ,String minute,String hour){
+
         Intent intent= new Intent(TherapyAddNew.this,ReminderBroadcast.class);
         PendingIntent pendingIntent= PendingIntent.getBroadcast(TherapyAddNew.this,0,intent,0);
 
         AlarmManager alarmManager=(AlarmManager) getSystemService(ALARM_SERVICE);
 
-        long timeAtButtonCLick=System.currentTimeMillis();
-        long tensec=1000*10;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hour));
+        calendar.set(Calendar.MINUTE, Integer.parseInt(minute));
+        calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(day));
+        calendar.set(Calendar.MONTH,Integer.parseInt(month));
+        calendar.set(Calendar.YEAR,Integer.parseInt(year));
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP,timeAtButtonCLick+tensec,pendingIntent);
+
+
+
+        Log.i("Datum",day +month+year+minute+hour);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
     }
+
+
 
 }
