@@ -133,6 +133,7 @@ public class LijekoviFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if(listAdapter != null)
                 listAdapter.getFilter().filter(newText);
                 return false;
             }

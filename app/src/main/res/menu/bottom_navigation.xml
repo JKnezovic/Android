@@ -4,19 +4,19 @@
     <item
         android:id="@+id/nav_terapija"
         android:icon="@drawable/ic_colorize_black_24dp"
-        android:title="Terapije" />
+        android:title="Therapies" />
 
     <item
         android:id="@+id/nav_podsjetnici"
         android:icon="@drawable/ic_access_time_black_24dp"
-        android:title="Podsjetnici" />
+        android:title="Reminders" />
 
     <item
         android:id="@+id/nav_lijekovi"
         android:icon="@drawable/ic_format_list_bulleted_black_24dp"
-        android:title="Lijekovi" />
+        android:title="Medicine" />
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="Profil" />
+        android:title="Profile" />
 </menu>
